@@ -43,6 +43,7 @@ public class X5Pool {
     /**
      * 维护x5活性，将活性最低者靠前待启用；
      * x5在resume时调用该方法调整活性;
+     *
      * @param sId
      * @return
      */

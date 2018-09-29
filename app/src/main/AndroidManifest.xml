@@ -35,7 +35,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".utils.shortcut.X5AgentActivity"></activity>
+            android:name=".utils.shortcut.X5AgentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".utils.x5.X5Activity0"
             android:launchMode="singleTask"

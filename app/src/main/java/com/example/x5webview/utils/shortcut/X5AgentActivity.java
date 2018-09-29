@@ -1,6 +1,5 @@
 package com.example.x5webview.utils.shortcut;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +17,7 @@ public class X5AgentActivity extends AppCompatActivity {
         Class<?> aClass = null;
 
         try {
-            aClass = Class.forName(X5Pool.getInstance().getNextActivity(getIntent().getIntExtra("sId",0)));
+            aClass = Class.forName(X5Pool.getInstance().getNextActivity(getIntent().getIntExtra("sId", 0)));
         } catch (Exception e) {
             Log.e(this.Tag, "no Class");
         }
@@ -27,10 +26,7 @@ public class X5AgentActivity extends AppCompatActivity {
             startActivity(new Intent(this, aClass).putExtras(getIntent()));
         }
         finish();
+        //For testing
+        //DBShortcutMgr.getInstance().createShortcut(getApplicationContext(), "xxx", 123, "");
     }
-
-    void addSC(Context context, String scName, String iconURL) {
-        scMgr.createShortcut(context, scName, iconURL);
-    }
-
 }

@@ -32,7 +32,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class DBShortcutMgr {
-    public void createShortcut(Context context, String scName, String iconURL) {
+    private static DBShortcutMgr instance;
+
+    public static DBShortcutMgr getInstance() {
+        return DBShortcutMgr.instance == null ? (DBShortcutMgr.instance = new DBShortcutMgr()) : DBShortcutMgr.instance;
+    }
+
+    public void createShortcut(Context context, String scName, int sId, String iconURL) {
         iconURL = "http://dev.local.yunyun-inc.com:8000/story/1377/icon.jpg?t=1534760617";
         Bitmap iconBDlocal = getBitMapFormUrl(iconURL);
 
@@ -72,8 +78,10 @@ public class DBShortcutMgr {
                 if (shortcutManager.isRequestPinShortcutSupported()) {
                     Intent receiverIntent = new Intent(Intent.ACTION_MAIN);
                     receiverIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                    receiverIntent.setComponent(new ComponentName(context.getPackageName(), context.getClass().getName()));
+//                    receiverIntent.setComponent(new ComponentName(context.getPackageName(), context.getClass().getName()));
+                    receiverIntent.setComponent(new ComponentName("com.example.x5webview", "com.example.x5webview.utils.shortcut.X5AgentActivity"));
                     receiverIntent.putExtra("name", scName);
+                    receiverIntent.putExtra("sId", sId);
 
                     ShortcutInfo info = new ShortcutInfo.Builder(context, scName)
                             .setIcon(Icon.createWithBitmap(iconBDlocal))
@@ -88,9 +96,11 @@ public class DBShortcutMgr {
 
                 }
             } else { // < api26
-                Intent receiverIntent = new Intent(context, context.getClass());
+                Intent receiverIntent = new Intent(Intent.ACTION_MAIN);
                 receiverIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                receiverIntent.setComponent(new ComponentName("com.example.x5webview", "com.example.x5webview.utils.shortcut.X5AgentActivity"));
                 receiverIntent.putExtra("name", scName);
+                receiverIntent.putExtra("sId", sId);
 
                 Intent intent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
                 intent.putExtra("duplicate", false);
@@ -178,7 +188,6 @@ public class DBShortcutMgr {
         }
         return false;
     }
-
 
     private Bitmap getDiskBitmap(String pathString) {
         Bitmap bitmap = null;
