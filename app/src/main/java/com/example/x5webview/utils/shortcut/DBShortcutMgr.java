@@ -80,7 +80,7 @@ public class DBShortcutMgr {
                     receiverIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 //                    receiverIntent.setComponent(new ComponentName(context.getPackageName(), context.getClass().getName()));
                     receiverIntent.setComponent(new ComponentName("com.example.x5webview", "com.example.x5webview.utils.shortcut.X5AgentActivity"));
-                    receiverIntent.putExtra("name", scName);
+                    receiverIntent.putExtra("sName", scName);
                     receiverIntent.putExtra("sId", sId);
 
                     ShortcutInfo info = new ShortcutInfo.Builder(context, scName)
@@ -99,7 +99,7 @@ public class DBShortcutMgr {
                 Intent receiverIntent = new Intent(Intent.ACTION_MAIN);
                 receiverIntent.addCategory(Intent.CATEGORY_LAUNCHER);
                 receiverIntent.setComponent(new ComponentName("com.example.x5webview", "com.example.x5webview.utils.shortcut.X5AgentActivity"));
-                receiverIntent.putExtra("name", scName);
+                receiverIntent.putExtra("sName", scName);
                 receiverIntent.putExtra("sId", sId);
 
                 Intent intent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");

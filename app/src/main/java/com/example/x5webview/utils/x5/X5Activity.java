@@ -56,6 +56,8 @@ public class X5Activity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        //todo:check sId
+//        intent.getIntExtra("sId", 0);
     }
 
     protected void loadUrl(String url) {
