@@ -21,6 +21,7 @@ public class X5Activity extends AppCompatActivity {
 
     protected ViewGroup x5Frame;
     protected X5WebView x5wv;
+    private int curSid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,24 @@ public class X5Activity extends AppCompatActivity {
         Intent intent = getIntent();
         int sId = intent.getIntExtra("sId", 0);
         String sName = intent.getStringExtra("sName");
-
-        loadUrl("http://172.16.137.85/yunyun-story-player/bin/heart/debug.html?curId=1&storyId=609&token=2c684MSaoFQm7_G6vYeiOhH49xtpdqoOmq6Z7yrK8_oyrZyOIV6bZ5bMnLpoFLJ7odXb9hMzSORov3ONWYXXptp7q9ARU7Z-E9zJme--hXIYQSY0wk5wk8P4cljq");
+        setTitle(sName);
+        if (sId > 0) {
+            loadUrl(sId);
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        //todo:check sId
-//        intent.getIntExtra("sId", 0);
+        int newSid = intent.getIntExtra("sId", 0);
+        if (newSid > 0 && newSid != curSid) {
+            loadUrl(newSid);
+        }
     }
 
-    protected void loadUrl(String url) {
+    protected void loadUrl(int sId) {
+        curSid = sId;
+        String url = "http://172.16.137.85/yunyun-story-player/bin/heart/debug.html?curId=1&storyId=609&token=2c684MSaoFQm7_G6vYeiOhH49xtpdqoOmq6Z7yrK8_oyrZyOIV6bZ5bMnLpoFLJ7odXb9hMzSORov3ONWYXXptp7q9ARU7Z-E9zJme--hXIYQSY0wk5wk8P4cljq";
         Log.i("x5url", "loadUrl: " + url);
         x5wv.loadUrl(url);
     }
@@ -114,6 +121,7 @@ public class X5Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         x5wv.onResume();
+        //todo:check token
         X5Pool.getInstance().refreshOrder(123);
         hide();
     }

@@ -26,6 +26,7 @@ public class X5AgentActivity extends AppCompatActivity {
             startActivity(new Intent(this, aClass).putExtras(getIntent()));
         }
         finish();
+        overridePendingTransition(0,0);
         //For testing
         //DBShortcutMgr.getInstance().createShortcut(getApplicationContext(), "xxx", 123, "");
     }
