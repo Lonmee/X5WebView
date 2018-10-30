@@ -25,7 +25,9 @@ public class X5AgentActivity extends AppCompatActivity {
         if (aClass != null) {
             startActivity(new Intent(this, aClass).putExtras(getIntent()));
         }
+
         finish();
+//        finishAndRemoveTask();
         overridePendingTransition(0,0);
         //For testing
         //DBShortcutMgr.getInstance().createShortcut(getApplicationContext(), "xxx", 123, "");

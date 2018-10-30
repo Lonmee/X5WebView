@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void goLog() {
         startActivity(new Intent(this, LoginActivity.class));
+        String.valueOf(5);
     }
 
     protected void goX5() {

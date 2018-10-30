@@ -28,7 +28,7 @@ public class X5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_x5);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
 
@@ -42,10 +42,14 @@ public class X5Activity extends AppCompatActivity {
         }
 
         x5wv = new X5WebView(this, null);
-        x5wv.addJavascriptInterface(new X5JSFun(), "Android");
-
         x5Frame = findViewById(R.id.x5Frame);
         x5Frame.addView(x5wv);
+        getApplicationContext();
+
+        x5wv.addJavascriptInterface(new X5JSFun(this), "dbWebView");
+        /************** testing **************/
+
+        /************** testing ind **********/
 
         Intent intent = getIntent();
         int sId = intent.getIntExtra("sId", 0);
@@ -63,11 +67,13 @@ public class X5Activity extends AppCompatActivity {
         if (newSid > 0 && newSid != curSid) {
             loadUrl(newSid);
         }
+        //startActivityForResult(new Intent(), curSid);
+
     }
 
     protected void loadUrl(int sId) {
         curSid = sId;
-        String url = "http://172.16.137.85/yunyun-story-player/bin/heart/debug.html?curId=1&storyId=609&token=2c684MSaoFQm7_G6vYeiOhH49xtpdqoOmq6Z7yrK8_oyrZyOIV6bZ5bMnLpoFLJ7odXb9hMzSORov3ONWYXXptp7q9ARU7Z-E9zJme--hXIYQSY0wk5wk8P4cljq";
+        String url = "http://172.16.137.84/yunyun-story-player/bin/heart/index.html?curId=1&storyId=609";
         Log.i("x5url", "loadUrl: " + url);
         x5wv.loadUrl(url);
     }

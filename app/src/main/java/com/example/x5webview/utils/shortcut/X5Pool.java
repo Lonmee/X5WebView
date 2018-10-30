@@ -26,7 +26,7 @@ public class X5Pool {
     }
 
     public String getNextActivity(int sId) {
-        return "com.example.x5webview.utils.x5.X5Activity" + refreshOrder(sId);
+        return "com.example.x5webview.utils.x5.X5Activity" + (sId == 0 ? "Temp" : refreshOrder(sId));
     }
 
     public void retrieveActivity(int sId) {

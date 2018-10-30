@@ -59,6 +59,7 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".utils.x5.X5Activity0"
             android:launchMode="singleTask"
